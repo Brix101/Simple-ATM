@@ -4,6 +4,7 @@ var isNum = false
 var pin:Int = 0
 val df = DecimalFormat("#.##")
 
+//Data class For Customer
 data class Customer(var accountNumber:Int = 0,var pin: Int = 0, var name: String= "", var balance: Double =0.00)
 
 object CustomerList {
@@ -28,7 +29,7 @@ fun main(args: Array<String>) {
                 val user = CustomerList.customerList.filterByPin(pin)
                 if(user.last()!=null){
                     try {
-                        toPrint()
+                        toPrint() // to Print Choices
                         val operation = Integer.valueOf(readLine())
                         performOp(operation,user.last())
                     }catch (e: Exception){
@@ -42,12 +43,12 @@ fun main(args: Array<String>) {
         }
     }
 }
-//Choices
+//Choices to Print
 fun toPrint(){
     println("Choose the operation you want to perform:")
     println(" 1: Withdraw | 2: Deposit | 3: Balance | 4: Send | 5: Exit ")
 }
-//Operatiun to Perform
+//Function to Perform Operation
 fun performOp(op: Any,user: Customer){
     when(op){
         1 -> withdraw(user)
@@ -64,11 +65,11 @@ fun performOp(op: Any,user: Customer){
         }
     }
 }
-//Check Customer Balance
+//Function Check Customer Balance
 fun checkBalance(user: Customer): Any {
     return df.format(user.balance).toDouble()
 }
-//Customer Withdraw
+//Function to Customer Withdraw
 fun withdraw(user: Customer) {
     println("Input Amount to Withdraw :")
     var isAmount = false
@@ -90,7 +91,7 @@ fun withdraw(user: Customer) {
         }
     }
 }
-//Function To Deposit
+//Function Customer To Deposit
 fun deposit(user: Customer){
     println("Input Amount to Deposit :")
     var isAmount = false
@@ -108,7 +109,7 @@ fun deposit(user: Customer){
         }
     }
 }
-//Function To Send Money
+//Function Customer To Send Money
 fun sendMoney(user: Customer){
     var isAccountNumber = false
     var accountNumber: Int = 0
