@@ -13,7 +13,8 @@
 ```
 # Images
 <p align="center">
-  ![](images/1_Intro-Choices.png)
+  <img src={![](images/1_Intro-Choices.png)} />
+  
   ![](images/2_choices-error-Handling.png)
   ![](images/3_withdraw.png)
   ![](images/4_deposit.png)
