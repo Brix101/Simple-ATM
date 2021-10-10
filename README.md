@@ -13,7 +13,7 @@
 ```
 # Images
 
-  ###Intro Choices
+  ### User Pin
   ![](images/1_Intro-Choices.png)
   
   ### Choices Error Handling
