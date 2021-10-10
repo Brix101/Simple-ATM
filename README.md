@@ -11,3 +11,28 @@
   ABLE TO WITHDRAW SOME CASH IN THE SPECIFIC CUSTOMER
   ABLE TO SENT A MONEY TO OTHER CUSTOMER
 ```
+# Images
+
+  ### User Pin
+  ![](images/1_Intro-Choices.png)
+  
+  ### Choices Error Handling
+  ![](images/2_choices-error-Handling.png)
+  
+  ### Withdraw
+  ![](images/3_withdraw.png)
+  
+  ### Deposit
+  ![](images/4_deposit.png)
+  
+  ### Check Balance
+  ![](images/5_check-balance.png)
+  
+  ### Send Money 1
+  ![](images/6_send-1.png)
+  
+  ### Send Money 2
+  ![](images/6_send-2.png)
+  
+  ### Exit
+  ![](images/7_Exit.png)
