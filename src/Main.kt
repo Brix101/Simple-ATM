@@ -4,13 +4,13 @@ var isNum = false
 var pin:Int = 0
 val df = DecimalFormat("#.##")
 
-data class Customer(var pin: Int = 0, var name: String= "", var balance: Double =0.00)
+data class Customer(var accountNumber:Int = 0,var pin: Int = 0, var name: String= "", var balance: Double =0.00)
 
 object CustomerList {
     var customerList = listOf(
-        Customer(1010,"Brixter Porras",5000.00),
-        Customer(2020,"Jane Doe" ,76000.00),
-        Customer(3030,"John Doe" ,24000.00),
+        Customer(12345,1010,"Brixter Porras",5000.00),
+        Customer(23456,2020,"Jane Doe" ,76000.00),
+        Customer(34567,3030,"John Doe" ,24000.00),
     )
 }
 
@@ -106,7 +106,7 @@ fun deposit(user: Customer){
 }
 
 fun sendMoney(user: Customer){
-
+    println("Input Account Number To Send")
 }
 
 
