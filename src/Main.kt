@@ -15,6 +15,7 @@ object CustomerList {
 }
 
 fun List<Customer>.filterByPin(pin: Int) = this.filter { it.pin == pin }
+fun List<Customer>.filterByAccountNum(accountNumber: Int) = this.filter { it.accountNumber == accountNumber }
 
 fun main(args: Array<String>) {
     println("Simple ATM")
@@ -26,9 +27,13 @@ fun main(args: Array<String>) {
             }else {
                 val user = CustomerList.customerList.filterByPin(pin)
                 if(user.last()!=null){
-                    toPrint()
-                    val operation = Integer.valueOf(readLine())
-                    performOp(operation,user.last())
+                    try {
+                        toPrint()
+                        val operation = Integer.valueOf(readLine())
+                        performOp(operation,user.last())
+                    }catch (e: Exception){
+                        println("Please Select On Choices")
+                    }
                 }
             }
         }catch(e: Exception){
@@ -47,8 +52,8 @@ fun performOp(op: Any,user: Customer){
     when(op){
         1 -> withdraw(user)
         2 -> deposit(user)
-        3 -> println("Your Balance : ${checkBalance(user)}")
-        4 -> println("sent money")
+        3 -> println("Your Balance :₱ ${checkBalance(user)}")
+        4 -> sendMoney(user)
         5 -> {
             println("Exiting...")
             if(pin==0){
@@ -74,13 +79,12 @@ fun withdraw(user: Customer) {
             if(money >= (amount?.toDouble()!!)){
                 val balance = money - (amount.toDouble())
                 user.balance = balance
-                println("Withdraw Successfully")
-                println("Your Balance :${balance}")
+                println("₱ $amount withdraw Successfully")
+                println("Your Balance :₱ $balance")
                 isAmount = true
             }else{
                 println("Please Input Amount Lower Than Your Balance :")
             }
-
         } catch (e: Exception) {
             println("Please Input Amount :")
         }
@@ -96,8 +100,8 @@ fun deposit(user: Customer){
             val money = user.balance
             val balance = money + (amount?.toDouble()!!)
             user.balance = balance
-            println("Deposit Successfully")
-            println("Your Balance :${balance}")
+            println("₱ $amount Deposit Successfully")
+            println("Your Balance :₱ $balance")
             isAmount = true
         }catch (e: Exception){
             println("Please Input Amount :")
@@ -106,7 +110,52 @@ fun deposit(user: Customer){
 }
 
 fun sendMoney(user: Customer){
-    println("Input Account Number To Send")
+    var isAccountNumber = false
+    var accountNumber: Int = 0
+    var accountName: String = ""
+    val money = user.balance
+    while (!isAccountNumber) {
+        try {
+            if(accountNumber==0){
+                println("Input Account Number of Receiver")
+                accountNumber = Integer.valueOf(readLine())
+            }else {
+                val user2 = CustomerList.customerList.filterByAccountNum(accountNumber).last()
+                if(accountName==""){
+                    println("Input Account Name of Receiver")
+                    accountName = readLine().toString()
+                }
+                else{
+                    if (user2.name.equals(accountName, ignoreCase = true)){
+                        try {
+                            println("Input Amount to send to ${user2.name}")
+                            val amount = readLine()
+
+                            if(money >= (amount?.toDouble()!!)){
+                                val balance = money - (amount.toDouble())
+                                user2.balance = user2.balance + amount.toDouble()
+                                user.balance = balance
+                                println("₱ $amount Transfer to ${user2.name} Successfully")
+                                println("Your Balance :₱ $balance")
+                                isAccountNumber = true
+                            }else{
+                                println("Please Input Amount Lower Than Your Balance :")
+                            }
+                        }catch (e: Exception){
+                            println("Please Input A Number")
+                        }
+                    }else{
+                        println("Account Name of ${user2.accountNumber} is Incorrect")
+                        accountName=""
+                    }
+                }
+
+            }
+        }catch (e: Exception){
+            println("User Not Found")
+            accountNumber=0
+        }
+    }
 }
 
 
