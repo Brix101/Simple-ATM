@@ -18,7 +18,7 @@ object CustomerList {
 fun List<Customer>.filterByPin(pin: Int) = this.filter { it.pin == pin } //filter and find Customer By Pin
 fun List<Customer>.filterByAccountNum(accountNumber: Int) = this.filter { it.accountNumber == accountNumber } //filter and find Customer By Account Number
 
-fun main(args: Array<String>) {
+fun main() {
     println("Simple ATM")
     while (!isNum){
         try{
@@ -112,8 +112,8 @@ fun deposit(user: Customer){
 //Function Customer To Send Money
 fun sendMoney(user: Customer){
     var isAccountNumber = false
-    var accountNumber: Int = 0
-    var accountName: String = ""
+    var accountNumber = 0
+    var accountName = ""
     val money = user.balance
     while (!isAccountNumber) {
         try {
